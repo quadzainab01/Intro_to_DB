@@ -9,7 +9,7 @@ CREATE TABLE AUTHORS (
 CREATE TABLE BOOKS (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    author_id INT,
+    author_id INT NOT NULL,
     genre VARCHAR(100),
     price DECIMAL(10, 2),
     stock_quantity INT,
@@ -25,15 +25,15 @@ CREATE TABLE CUSTOMERS (
 
 CREATE TABLE ORDERS (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT,
+    customer_id INT NOT NULL,
     order_date DATE,
     FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id)
 );
 
 CREATE TABLE ORDER_DETAILS (
     order_detail_id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
-    book_id INT,
+    order_id INT NOT NULL,
+    book_id INT NOT NULL,
     quantity INT,
     FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
     FOREIGN KEY (book_id) REFERENCES BOOKS(book_id)
